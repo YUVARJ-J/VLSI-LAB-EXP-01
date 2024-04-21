@@ -16,20 +16,22 @@ STEP:1 Start the Xilinx navigator, Select and Name the New project. STEP:2 Selec
 
 ### Verilog Code:
 ```
-module logicgate (a,b,andgate,orgate,xorgate,nandgate,norgate,xnorgate,notgate);
-input a,b;  
-output andgate,orgate,xorgate,nandgate,norgate,xnorgate,notgate;
-and(andgate,a,b);
-or(orgate,a,b);
-xor(xorgate,a,b);
-nand(nandgate,a,b); 
-nor(norgate,a,b);
-xnor(xnorgate,a,b);
-not(notgate,a);
+module alllgates(a,b,w1,w2,w3,w4,w5,w6,w7);
+input a,b;
+output w1,w2,w3,w4,w5,w6,w7;
+and g1(w1,a,b);
+or g2(w2,a,b);
+not g3(w3,a);
+xor g4(w4,a,b);
+xnor g5(w5,a,b);
+nand g6(w6,a,b);
+nor g7(w7,a,b); 
 endmodule
+
 ```
 ### Output:
-![LOGIC GATES](https://github.com/Dhinesh0024/VLSI-LAB-EXP-1/assets/160568927/3c433290-2fc2-407d-90e4-1e1c24758fb0)
+![image](https://github.com/YUVARJ-J/VLSI-LAB-EXP-01/assets/161425982/e6b663eb-ec0c-4ea7-803e-6cdadd2fc4cd)
+
 
 
 ## Half Adder:
@@ -40,15 +42,17 @@ endmodule
 
 ### Verilog Code:
 ```
-module halfadder(a,b,sum,carry);
-input a,b;
-output sum,carry;
-xor g1(sum,a,b);
-and g2(carry,a,b);
+module halfadder(x,y,s,c);
+input x,y;
+output s,c;
+xor g1(s,x,y);
+and g2(c,y,x);
 endmodule
+
 ```
 ### Output:
-![Screenshot 2024-02-17 134320](https://github.com/Dhinesh0024/VLSI-LAB-EXP-1/assets/160568927/8251c978-56b6-4c86-9d0f-de057f5664ec)
+![image](https://github.com/YUVARJ-J/VLSI-LAB-EXP-01/assets/161425982/7c50812f-2e89-4294-b498-7aa8d32bfe0d)
+
 
 ## Full adder:
 
@@ -58,20 +62,22 @@ endmodule
 
 ### Verilog Code:
 ```
-module fadd(a,b,c,sum,carry);
-input a,b,c;
+module fulladder(a,b,cin,sum,carry);
+input a,b,cin;
 output sum,carry;
 wire w1,w2,w3;
-xor g1(w1,a,b);
-and g2(w2,a,b);
-xor g3(sum,w1,c);
-and g4(w3,w1,c);
-or g5(carry,w3,w2);
+xor g1(w2,a,b);
+and g2(w1,b,a);
+xor g3(sum,w2,cin);
+and g4(w3,cin,w2);
+or g5(carry,w3,w1);
 endmodule
+
 ```
 ### Output:
+![image](https://github.com/YUVARJ-J/VLSI-LAB-EXP-01/assets/161425982/5a316a07-639f-49c6-ae39-d1f99ec50fab)
 
-![Screenshot 2024-02-17 141627](https://github.com/Dhinesh0024/VLSI-LAB-EXP-1/assets/160568927/90529bb3-c1dc-4ae2-8b1f-4b94e6afd20a)
+
 
 ## Half Subtractor:
 
@@ -82,17 +88,21 @@ endmodule
 ### Verilog Code:
 
 ```
-module halfsubtractor(a,b,diff,borrow);
-input a,b;
-output diff,borrow;
-xor g1(diff,a,b);
-and g2(borrow,~a,b);
+module halfsubtractor(x,y,d,b);
+input x,y;
+output d,b;
+wire w;
+xor g1(d,x,y);
+not g2(w,x);
+and g3(b,y,w);
 endmodule
+
 ```
 
 ### Output:
 
-![Screenshot 2024-02-17 140420](https://github.com/Dhinesh0024/VLSI-LAB-EXP-1/assets/160568927/087e940b-db2a-4c33-a302-a3cf30a1f4b6)
+![image](https://github.com/YUVARJ-J/VLSI-LAB-EXP-01/assets/161425982/790dfb51-6250-4a2e-b76f-68bc251e827a)
+
 
 ## Full Subtractor:
 
@@ -103,21 +113,26 @@ endmodule
 ### Verilog Code:
 
 ```
-module fs(a,b,bin,d,bout);
-input a,b,bin; 
-output d,bout;
-wire w1,w2,w3;
-xor g1(w1,b,bin; 
-xor g2(d,w1,a);
-and g3(w2,a,~w1);
-and g4(w3,~b,bin);
-or g5(bout,w2,w3);
+
+module fullsub(a,b,bin,diff,borrow);
+input a,b,bin;
+output diff,borrow;
+wire w1,w2,w3,w4,w5;
+xor g1(w3,a,b);
+not g2(w1,a);
+and g3(w2,b,w1);
+xor g4(diff,w3,bin);
+not g5(w4,w3);
+and g6(w5,bin,w4);
+or g7(borrow,w5,w2);
 endmodule
+
 ```
 
 ### Output:
 
-![FSUB](https://github.com/Dhinesh0024/VLSI-LAB-EXP-1/assets/160568927/3597c920-691b-424c-937a-42720ff66df0)
+![image](https://github.com/YUVARJ-J/VLSI-LAB-EXP-01/assets/161425982/e7feca4f-5abc-4ea0-be45-91aef9524ce5)
+
 
 ## 8 Bit Ripple Carry Adder:
 
@@ -161,6 +176,8 @@ endmodule
 
 
 ## RESULT:
-Hence Logic Gates,Adders and Subtractor are simulated and synthesised using Xilinx ISE.
+Thus the Logic Gates, Adders and Subtractors are Synthesis and stimulated 
+Successfully Using Xilinx ISE.
+
 
 
