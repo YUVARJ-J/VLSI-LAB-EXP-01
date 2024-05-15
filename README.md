@@ -1,4 +1,6 @@
-# VLSI-LAB-EXPERIMENTS
+EXPT:1                  
+# SIMULATE AND IMPLEMENTATION OF LOGIC GATES,ADDERS & SUBTRACTOR
+DATE: 13.02.2024
 ## AIM:
 To simulate and synthesis Logic Gates,Adders and Subtractor using Xilinx ISE.
 
